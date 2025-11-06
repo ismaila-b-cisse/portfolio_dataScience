@@ -1,0 +1,19 @@
+# Ignorer les environnement virtuels
+**/venv/
+**/.venv/
+**/env/
+**/*.env/
+**/temp/
+
+# Ignorer les caches pythons
+**/__pycache__/
+**/*.pyc
+
+# Ignorer les checkpoints jupyter
+**/.ipynb_checkpoints/
+
+# Ignorer ces dossier
+1_extraction/extracted_data
+1_extraction/https:/
+
+
