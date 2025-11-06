@@ -1,9 +1,9 @@
 Cette partie se concentre sur l'extraction des données, notamment le web scraping. Il s'agit d'extraire les données d'un site web. Cette extraction peut être de manière automatisée. Sur ce type d'extraction, souvent des questions légales et éthiques se posent. Ainsi, est-il légal de faire du scraping sur un site web ? J'ai trouvé les réponses à cette question de ces trois liens très intéressantes. L'un c'est [Le Web Scraping est-il légal ?](https://www.app.asso.fr/preuve-digitale/web-scraping-legal.html) qui affirme que "l’activité de web scraping n’est absolument pas illicite ou interdite en soi", néanmoins, il faut tenir compte de quatre points :
     
-    - le respect du droit sui generis *doit d'auteur*
-    - le respect des conditions générales d'utilisation (cgu) *droit des contrats*
-    - le respect des lois en matière d'accès et de maintien dans un STAD (système de traitement automatisé de données) *droit pénal*
-    - le respect des principes du RGPD lors du traitement de données - *droit de la protection des données*
+    - le respect du droit sui generis - doit d'auteur
+    - le respect des conditions générales d'utilisation (cgu) - droit des contrats
+    - le respect des lois en matière d'accès et de maintien dans un STAD (système de traitement automatisé de données) - droit pénal
+    - le respect des principes du RGPD lors du traitement de données - droit de la protection des données
 
 L'autre est [Le web scraping est-il illégal ? Comprendre les enjeux juridiques](https://thunderbit.com/fr/blog/web-scraping-legal-implications).
 Enfin sur le dernier lien, c'est un article du CNIL, [La base légale de l’intérêt légitime : fiche focus sur les mesures à prendre en cas de collecte des données par moissonnage (web scraping)](https://www.cnil.fr/fr/focus-interet-legitime-collecte-par-moissonnage) 
