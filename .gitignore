@@ -12,7 +12,7 @@
 # Ignorer les checkpoints jupyter
 **/.ipynb_checkpoints/
 
-# Ignorer ces dossier
+# Ignorer ces dossiers
 1_extraction/extracted_data
 1_extraction/https:/
 
