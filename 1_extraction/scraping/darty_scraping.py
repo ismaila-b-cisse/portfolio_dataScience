@@ -19,24 +19,27 @@ D_LABEL = os.getenv("D_LABEL")
 D_PRICE_TTC = os.getenv("D_PRICE_TTC")
 D_PAGINATION = os.getenv("D_PAGINATION")
 
+"""
+    Cette fonction scrolle et charge les données.
+    Elle prend en entrée :
+            - la page,  
+            - le nombre de pages qu'on souhaite extraire les données. Il est par défaut égale à 0.
+    Elle renvoie en sortie :
+            - une liste des données extraites
+"""
 # Scrolling et loading...
 async def scroll_and_load(page, n):
     
     last_height = await page.evaluate('document.body.scrollHeight')
     i = 1
     products_list_n = []
-    while i <= n:
-        #await page.wait_for_selector("body", timeout=0)
-        #await page.wait_for_load_state("domcontentloaded", timeout=0) #'load'), 'networkidle'
-        #await asyncio.sleep(1)
-        
+    while i <= n:        
         print(f'================================ Page {i}...')
 
         # du début jusquà une position donnée
         #await page.evaluate('window.scrollTo(0, document.body.scrollHeight)')
         await page.mouse.wheel(0, random.randint(2000, 7000))
         await page.wait_for_timeout(1500)
-        #await asyncio.sleep(1)
 
         # 
         content_html = await page.content()       
@@ -52,7 +55,6 @@ async def scroll_and_load(page, n):
         products = soup.select(D_PRODUCT)
         #print(products)
         products_list = []
-        #print(await page.content())
         for product in products: 
             # Les types de téléphone (ex : smartphone ou iphone)
             family_locator = product.select_one(D_FAMILY)
@@ -102,8 +104,6 @@ async def scroll_and_load(page, n):
                 price_ttc = price_ttc_locator.text
             else:
                 price_ttc = None
-            # products_list.append({"marque":brand})
-            # print(f"brand : {brand}")
 
             # On récupère la date du scraping
             date = datetime.datetime.today().strftime("%d-%m-%Y %H:%M:%S")
@@ -129,7 +129,7 @@ async def scroll_and_load(page, n):
         new_height = await page.evaluate('document.body.scrollHeight')
         print("new_height : ", new_height, "\nlast_height : ", last_height, ""+
               "\n diff(new, last) : ", new_height - last_height)
-        # chargement - extraction - scrolling - chargement
+        
         if abs(new_height - last_height) < 100000:
             try:                     
                 element = page.locator(D_PAGINATION)
@@ -164,10 +164,10 @@ async def scroll_and_load(page, n):
     
     #print("taille : ", len(products_list_n), "\n", products_list_n)
     with open("extracted_data/extracted_darty_data.csv", 'w', newline='', encoding="utf-8") as csvfile:
-        #fieldnames = ["marque"]
         fieldnames = ["typeTelephone", "marque", "reference", "note", "nombreAvis", "vendeur", "nomDuVendeur", "prix", "date"]
-        #fieldnames = products_list[0].keys()
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(products_list_n)
-    return products_list
+
+    print('================================ Données darty chargées ================================')
+    return products_list_n
