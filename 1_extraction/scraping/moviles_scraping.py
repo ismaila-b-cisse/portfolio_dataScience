@@ -25,9 +25,9 @@ M_PAGINATION = os.getenv("M_PAGINATION")
             - le nombre de pages qu'on souhaite extraire les données. Il est par défaut égale à 0.
     Elle renvoie en sortie :
             - une liste des données extraites
-    Les données extraites sur le site moviles sont des données supplémentaires constituant un dictionnaire de 
-    marques de mobile et leurs modèles ou une sorte de référentiel pour les données déjà extraites sur les 
-    sites darty, temu et amazon.
+    Les données extraites sur le site moviles sont des données supplémentaires constituant une sorte de 
+    référentiel des modèles de marques de mobiles pour les données déjà extraites sur les sites darty, 
+    temu et amazon.
     Ces données seront traitées dans la partie Préparation des données.
 """
 # Scrolling et loading...
