@@ -13,7 +13,8 @@
 **/.ipynb_checkpoints/
 
 # Ignorer ces dossiers
-1_extraction/extracted_data
+1_extraction/extracted_data/
 1_extraction/https:/
+**/data/
 
 
