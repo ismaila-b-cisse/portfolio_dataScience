@@ -32,7 +32,7 @@ async def scroll_and_load(page, n):
     
     last_height = await page.evaluate('document.body.scrollHeight')
     i = 1
-    products_list_n = []
+    product_list_n = []
     while i <= n:        
         print(f'================================ Page {i}...')
 
@@ -54,7 +54,7 @@ async def scroll_and_load(page, n):
         
         products = soup.select(D_PRODUCT)
         #print(products)
-        products_list = []
+        product_list = []
         for product in products: 
             # Les types de téléphone (ex : smartphone ou iphone)
             family_locator = product.select_one(D_FAMILY)
@@ -108,7 +108,7 @@ async def scroll_and_load(page, n):
             # On récupère la date du scraping
             date = datetime.datetime.today().strftime("%d-%m-%Y %H:%M:%S")
             
-            products_list.append({"typeTelephone":family,
+            product_list.append({"typeTelephone":family,
                                   "marque":brand,
                                   "reference":reference,
                                   "prix":price_ttc,
@@ -123,7 +123,7 @@ async def scroll_and_load(page, n):
                   f"vendeur : {seller}\n nomDuVendeur : {label} date : {date}")
 
         # On concatène les listes
-        products_list_n +=products_list
+        product_list_n +=product_list
             
         # position actuelle
         new_height = await page.evaluate('document.body.scrollHeight')
@@ -162,12 +162,12 @@ async def scroll_and_load(page, n):
     #         darty2.write(await page.content())
 
     
-    #print("taille : ", len(products_list_n), "\n", products_list_n)
+    #print("taille : ", len(product_list_n), "\n", product_list_n)
     with open("extracted_data/extracted_darty_data.csv", 'w', newline='', encoding="utf-8") as csvfile:
         fieldnames = ["typeTelephone", "marque", "reference", "note", "nombreAvis", "vendeur", "nomDuVendeur", "prix", "date"]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
-        writer.writerows(products_list_n)
+        writer.writerows(product_list_n)
 
     print('================================ Données darty chargées ================================')
-    return products_list_n
+    return product_list_n

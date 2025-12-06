@@ -29,7 +29,7 @@ async def scroll_and_load(page, n):
     
     last_height = await page.evaluate('document.body.scrollHeight')
     i = 1
-    products_list_n = []
+    product_list_n = []
     while i <= n:        
         print(f'================================ Page {i}...')
 
@@ -52,7 +52,7 @@ async def scroll_and_load(page, n):
     
         products = soup.select(A_PRODUCT)
         #print(products)
-        products_list = []
+        product_list = []
         #print(await page.content())
         for product in products: 
             # Les types et la référence de téléphone (ex : smartphone galaxy S56 ou iphone apple ...)
@@ -91,7 +91,7 @@ async def scroll_and_load(page, n):
             # On récupère la date du scraping
             date = datetime.datetime.today().strftime("%d-%m-%Y %H:%M:%S")
             
-            products_list.append({"reference":typeRef,
+            product_list.append({"reference":typeRef,
                                   "prix":price_ttc,
                                   "nombreVentes":sales_number,
                                   "note":average,
@@ -100,7 +100,7 @@ async def scroll_and_load(page, n):
                                   })
 
         # On concatène les listes
-        products_list_n +=products_list
+        product_list_n +=product_list
             
         # position actuelle
         new_height = await page.evaluate('document.body.scrollHeight')
@@ -135,7 +135,7 @@ async def scroll_and_load(page, n):
         fieldnames = ["reference", "prix", "nombreVentes", "note", "nombreAvis", "date"]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
-        writer.writerows(products_list_n)
+        writer.writerows(product_list_n)
 
     print('================================ Données amazon chargées ================================')
-    return products_list_n
+    return product_list_n
