@@ -1,11 +1,11 @@
 Ce dépôt présente un portfolio qui a pour objectif de passer en revue les grandes étapes de la science des données, de l'extraction des données jusqu'à la modélisation des données en passant par le nettoyage et la transformation, l'exploration, l'analyse et la visualisation des données. 
 
-Le plan est ainsi constitué : 
-1. Extraction 
-2. Nettoyage et transformation
-3. Exploration (data mining)
-4. Analyse et Visualisation 
-5. Modélisation
+Le plan est ainsi constitué :   
+1. [Extraction](./1_extraction)  
+2. Nettoyage et transformation  
+3. Exploration (data mining)  
+4. Analyse et Visualisation   
+5. Modélisation  
 
 Pour l'extraction, j'utiliserai les techniques de scraping pour extraire les données. Les données que j'utilise sont celles des sites e-commerce, notamment darty, temu, amazon, etc. Dans cette partie, nous discuterons également du scraping et l'éthique. 
 
