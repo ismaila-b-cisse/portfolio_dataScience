@@ -18,15 +18,18 @@ M_BANNER_BUTTON = os.getenv("M_BANNER_BUTTON")
 
 
 """
-    Cette méthode lance le navigateur et appelle la fonction scroll_and_load.
+    Cette méthode lance le navigateur et appelle la fonction scroll_and_load des sites web.
     Elle prend 
             - une url, 
             - un nom de site sur lequel on fait l'extraction,
+            - Pour l'extraction des données supplémentaire sur le site amoviles, 
+              une liste des marques qu'on souhaite extraire leurs modèles est ajouté comme
+              paramètre. Il est par défaut vide.
             - le nombre de pages qu'on souhaite extraire les données. Il est par défaut égale à 0.
-              Il peut être utile de ne extraire que les données qu'on a besoin au lieu de vouloir charger 
+              Il peut être utile de n'extraire que les données qu'on a besoin au lieu de charger 
               tous les produits du site, par exemple, afin d'éviter de surcharger son serveur.
 """
-async def scraper(url, website_name, number_of_page=0):
+async def scraper(url, website_name, brand_list=[], number_of_page=0):
     
     async with async_playwright() as pw:
         # créer une instance de browser
@@ -86,63 +89,11 @@ async def scraper(url, website_name, number_of_page=0):
                 pass
             
             print("loading...")
-            await moviles.scroll_and_load(page, number_of_page)
-            
-        else:
-            print("Ce site n'est pas pris en charge ! veuillez réessayer un un autre nom.")
-        
-        await asyncio.sleep(1)
-        await context.close()
-        await browser.close()
-
-
-"""
-    Cette méthode, comme le scraper, mais spécifique pour l'extraction des données supplémentaire.
-    Il lance le navigateur et appelle la fonction scroll_and_load.
-    Elle prend 
-            - une url, 
-            - un nom de site sur lequel on fait l'extraction, 
-            - Pour l'extraction des données supplémentaire sur le site amoviles, 
-              une liste des marques qu'on souhaite extraire leurs modèles est ajouté comme
-              paramètre. Il est par défaut vide.
-            - le nombre de pages qu'on souhaite extraire les données. Il est par défaut égale à 0.
-              Il peut être utile de n'extraire que les données qu'on a besoin au lieu de vouloir charger 
-              tous les produits du site, par exemple, afin d'éviter de surcharger son serveur.
-"""
-async def additional_scraper(url, website_name, brand_list=[], number_of_page=0):
-    
-    async with async_playwright() as pw:
-        # créer une instance de browser
-        browser = await pw.chromium.launch(
-            headless=False,
-            args=[ARGS]
-        )
-        # Créer un contexte
-        context = await browser.new_context()
-        # Créer la page
-        page = await context.new_page()
-        
-        print(website_name)
-
-        # Pour moviles
-        if website_name=="moviles":
-            await page.goto(url ,timeout=0, wait_until="domcontentloaded")
-            await asyncio.sleep(1)
-            
-            try:
-                locator = page.frame_locator(M_BANNER_IFRAME).locator(M_BANNER_BUTTON)
-                await locator.click()
-                await asyncio.sleep(1)
-            except TimeoutError:
-                pass
-            
-            print("loading...")
             await moviles.scroll_and_load(page, brand_list, number_of_page)
             
         else:
             print("Ce site n'est pas pris en charge ! veuillez réessayer un un autre nom.")
         
-
         await asyncio.sleep(1)
         await context.close()
         await browser.close()
