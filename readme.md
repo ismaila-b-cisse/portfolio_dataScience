@@ -2,7 +2,7 @@ Ce dépôt présente un portfolio qui a pour objectif de passer en revue les gra
 
 Le plan est ainsi constitué :   
 1. [Extraction](./1_extraction)  
-2. Nettoyage et transformation  
+2. [Nettoyage et transformation](https://github.com/ismaila-b-cisse/portfolio_dataScience/tree/master/2_preparation)  
 3. Exploration (data mining)  
 4. Analyse et Visualisation   
 5. Modélisation  
