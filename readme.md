@@ -13,6 +13,6 @@ Pour le nettoyage, je me concentre d'abord au nettoyage des datasets issus des s
 
 Pour l'exploration, j'étudierai les données en profondeur pour mieux les comprendre.
 
-Pourl'analyse et la visualisation, j'étudierai certaines KPI (Key Performances Indicators ou indicateurs de performances).
+Pour l'analyse et la visualisation, j'étudierai certaines KPI (Key Performances Indicators ou indicateurs de performances).
 
-Pour la modélisation, je pourrai utiliser un dataset différent pour prédire une variable selon certaines caractéristiques ou faire du NLP. 
+Pour la modélisation, je pourrais utiliser un dataset différent pour prédire une variable selon certaines caractéristiques ou faire du NLP. 
